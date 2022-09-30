@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registrarse</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Price Slider Stylesheets -->
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="assets/css/menu.css">
+
+</head>
+
+<body>
+    <!-- Nav -->
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <i class="bi bi-list"></i> <svg width="40" height="32">
+
+                </svg>
+                <span class="fs-4 color-red">Platino's Food</span>
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link color-red">Inicio</a></li>
+                <li class="nav-item"><a href="/menu" class="nav-link color-red">Menú</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link color-red">Ingresar</a></li>
+                <li class="nav-item"><a href="/sign-up" class="nav-link active">Registrarse</a></li>
+            </ul>
+        </header>
+    </div>
+    <!-- Page content -->
+    <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+            <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Card body -->
+                    <div class="card-body p-6">
+                        <div class="mb-4">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h2 class="mb-1">Registrarse</h2>
+                                </div>
+                                <div class="col-3 mt-2">
+                                    <a href="/" class="decoration-none-red">
+                                        <h5>Inicio</h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <hr class="my-4" />
+                            <span>¿Ya tienes una cuenta?
+                                <a href="/login" class="ml-1 decoration-none-red">Iniciar
+                                    Sesión</a></span>
+                        </div>
+                        <!-- Form -->
+                        <form>
+                            <!-- Nombre -->
+                            <div class="form-group">
+                                <label for="username" class="form-label">Nombre</label>
+                                <input type="text" id="name" class="form-control" name="name" placeholder="Nombre"
+                                    required />
+                            </div>
+                            <!-- Apellido -->
+                            <div class="form-group mt-3">
+                                <label for="lastname" class="form-label">Apellido</label>
+                                <input type="text" id="lastname" class="form-control" name="lastname"
+                                    placeholder="Apellido" required />
+                            </div>
+                            <!-- Email -->
+                            <div class="form-group mt-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email"
+                                    required />
+                            </div>
+                            <!-- Direccion -->
+                            <div class="form-group">
+                                <label for="address" class="form-label">Direccion</label>
+                                <input type="text" id="address" class="form-control" name="name" placeholder="Direccion"
+                                    required />
+                            </div>
+                            <!-- Telefono -->
+                            <div class="form-group mt-3">
+                                <label for="phone" class="form-label">Telefono</label>
+                                <input type="text" id="phone" class="form-control" name="Telefono"
+                                    placeholder="Telefono" required />
+                            </div>
+                            <!-- Password -->
+                            <div class="form-group mt-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" id="password" class="form-control" name="password"
+                                    placeholder="**************" required />
+                            </div>
+                            <!-- Checkbox -->
+                            <div class="form-group mt-2">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="agreeCheck" />
+                                    <label class="custom-control-label" for="agreeCheck"><span>Acepto <a
+                                                class="decoration-none-red" href="/terms">
+                                                Términos de Servicio </a> y <a class="decoration-none-red"
+                                                href="/policy"> Política de Privacidad
+                                                .</a></span></label>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- Button -->
+                                <button type="submit" class="btn btn-outline-danger w-100 btn-block mt-4">
+                                    Registrar
+                                </button>
+                            </div>
+                            <hr class="my-4" />
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

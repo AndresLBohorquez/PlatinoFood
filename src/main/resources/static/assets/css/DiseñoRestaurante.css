@@ -1,0 +1,315 @@
+*{
+    margin:0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+body{
+    font-family: 'open sans', cursive !important;
+}
+
+.img-sz {
+    width: 60%;
+    height: 350px;
+}
+
+.contenedor {
+    padding: 60px 0 !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+    margin: auto !important;
+    overflow: hidden !important;
+}
+
+/* Header */
+
+header {
+    width: 100% !important;
+    height: 600px !important;
+    background-image: url(../img/10295572_4281021.jpg) !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    position: relative !important;
+    
+}
+
+nav {
+    
+    background-color: #fff !important;
+    height: 40px !important;
+    margin-top: 20px !important;
+    
+}
+
+.nav-a{
+    display: inline !important;
+    color: #888181 !important;
+    font-weight: 300 !important;
+    text-decoration: none !important;
+    
+}
+.nav-a > a:hover{
+    text-shadow: 0 0 10px #888181 !important;
+}
+
+.menus{
+    display:inline-block !important;
+    margin-right: 1150px !important;
+  }
+
+.menu1 {
+    width: 35px !important;
+    height: 5px !important;
+    background-color: black !important;
+    margin: 6px 0px !important;
+  }
+
+  .menu2 {
+    width: 35px !important;
+    height: 5px !important;
+    background-color: black !important;
+    margin: 6px 0 !important;
+  }
+
+  .menu3 {
+    width: 35px !important;
+    height: 5px !important;
+    background-color: black !important;
+    margin: 6px 0 !important;
+  }
+header .textos-header{
+    display: flex !important;
+    height: 430px !important;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    text-align: center !important;
+}
+
+.textos-header h1{
+    font-size: 50px !important;
+    color: #fff !important;
+}
+
+.textos-header h2{
+    font-size: 30px !important;
+    font-weight: 300 !important;
+    color: #ffffff !important;
+}
+
+.wave{
+   position: absolute !important;
+   bottom: 0 !important; 
+   width: 100% !important;
+   
+}
+
+.about-services{
+    background: #fff !important;
+    padding-bottom: 30px !important;
+}
+
+.servicio-cont{
+    display: flex !important;
+    justify-content:space-evenly !important;
+    align-items: center !important;
+}
+
+.servicio-ind{
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.servicio-ind img{
+    width: 100% !important;
+    padding: 10px !important;
+}
+
+.servicio-ind h3{
+    text-align: justify !important;
+    margin: 10px 0 !important;
+}
+
+.servicio-ind p{
+    font-weight: 300 !important;
+    text-align: justify !important;
+}
+
+/* footer */
+
+footer{
+    background: #414141 !important;
+    padding: 60px 0 30px 0 !important;
+    margin: auto !important;
+    overflow: hidden !important;
+}
+
+.contenedor-footer{
+    display: flex !important;
+    width: 90% !important;
+    justify-content: space-evenly !important;
+    margin: auto !important;
+    padding-bottom: 50px !important;
+    border-bottom: 1px solid #ccc !important;
+}
+
+.content-foot{
+    text-align: center !important;
+}
+
+.content-foot h4{
+    color: #fff !important;
+    border-bottom: 3px solid hsl(317, 45%, 52%, 0.7) !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+.content-foot p{
+    color: #ccc !important;
+}
+
+.titulo-final{
+    text-align: center !important;
+    font-size: 14px !important;
+    margin: 20px 0 0 0 !important;
+    color: #9e9797 !important;
+}
+
+@media screen and (max-width:900px){
+    header{
+        background-position: center !important;
+    }
+    .contenedor-sobre-nosotros{
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .sobre-nosotros .contenido-textos{
+        width: 90% !important;
+    }
+
+    .imagen-about-us{
+        width: 90% !important;
+    }
+
+    .imagen-port{
+        width: 44% !important;
+    }
+
+    .cards{
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .cards .card{
+        width: 90% !important;
+    }
+    .cards .card:first-child{   
+    margin-bottom: 30px !important;
+    }
+
+    .card > .contenido-texto-card{
+        width: 50% !important;
+    }
+
+
+    .servicio-cont{
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+
+    .servicio-ind{
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .servicio-ind:nth-child(1){
+        margin-bottom: 60px !important;
+    }
+
+    .servicio-ind img{
+        width: 90% !important;
+    }
+
+}
+
+@media  screen and (max-width:500px) {
+    nav {
+        text-align: center !important;
+        padding: 30px 0 0 0 !important;
+    }
+    
+    nav > a{
+        margin-right: 5px !important;
+    }
+
+    .textos-header h1{
+        font-size: 35px !important;
+    }
+
+    .textos-header h2{
+        font-size: 20px !important;
+    }
+
+    .imagen-about-us {
+        margin-bottom: 60px !important;
+        width: 99% !important;
+    }
+
+    .sobre-nosotros .contenido-textos{
+        width: 95% !important;
+    }
+
+    .imagen-port{
+        width: 95% !important;
+    }
+
+    .clientes-contenedor{
+        width: 90% !important;
+        align-items: center !important;
+    }
+
+    .cards {
+        width: 100% !important;
+    }
+
+    .cards .card{
+        height: 450px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .cards .card img{
+        width: 90px;
+        height: 90px;
+    }
+    .contenedor-footer{
+        flex-direction: column !important;
+        border:none !important;
+    }
+    .content-foo{
+        margin-bottom: 20px !important;
+        text-align: center !important;
+    }
+    .content-foo h4{
+        border: none !important;
+    }
+
+    .content-foo p{
+        color:#ccc;
+        border-bottom: 1px solid #f2f2f2 !important;
+        padding-bottom: 20px !important;
+    }
+
+    .titulo-final{
+       font-size: 15px !important;
+    }
+
+    .decoration-none {
+        text-decoration: none !important;
+    }
+}

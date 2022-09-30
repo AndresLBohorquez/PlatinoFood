@@ -1,0 +1,56 @@
+.img-sz {
+    width: 60%;
+    height: 350px;
+}
+
+
+.card-height {
+    height: 450px;
+}
+
+.card-text-sz {
+    height: 120px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #b55454;
+}
+
+.color-red {
+    color: #b55454;
+    text-decoration: none;
+}
+
+.h-sidebar{
+    min-height: 70vh
+}
+
+.btn-primary-red{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #b55454;
+    --bs-btn-border-color: #b55454;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #832323;
+    --bs-btn-hover-border-color: #b55454;
+    --bs-btn-focus-shadow-rgb: 49,132,253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #b55454;
+    --bs-btn-active-border-color: #b55454;
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #b55454;
+    --bs-btn-disabled-border-color: #b55454;
+}
+
+.profile-title{
+    font-size: 50px;
+    text-align: center;
+    font-family: var(--bs-body-font-family);
+}
+
+.decoration-none-red {
+    text-decoration: none;
+    color: #b55454 !important;
+}
