@@ -37,21 +37,6 @@ public class PlatinoFoodController {
         return "/admin/index.html";
     }
 
-    @GetMapping("/users/user-list")
-    public String goToUserListAdmin(Model model) {
-        return "/admin/users/user-list";
-    }
-
-    @GetMapping("/add-user")
-    public String goToAddUserAdmin(Model model) {
-        return "/admin/users/add-user";
-    }
-
-    @GetMapping("/edit-user")
-    public String goToEditUserAdmin(Model model) {
-        return "/admin/users/edit-user";
-    }
-
     @GetMapping("/reservations/reservations-list")
     public String goToReservationsListAdmin(Model model) {
         return "/admin/reservations/reservations-list";

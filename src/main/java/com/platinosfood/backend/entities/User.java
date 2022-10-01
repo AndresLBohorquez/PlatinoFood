@@ -35,10 +35,9 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Getter(value = AccessLevel.NONE)
     @Column(nullable = false)
     private String password;
 
@@ -51,10 +50,10 @@ public class User {
     @Column(nullable = false)
     private boolean enable;
 
-    @Column(nullable = false)
+    @Column
     private Date registerDate;
 
-    @Column(nullable = false)
+    @Column
     private Date accessDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
