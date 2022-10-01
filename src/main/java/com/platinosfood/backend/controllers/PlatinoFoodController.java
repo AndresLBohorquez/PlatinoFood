@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PlatinoFoodController {
 
-    @GetMapping("/menu")
-    public String goToMenu(Model model) {
-        return "menu";
-    }
-
     @GetMapping("/login")
     public String goToLogin(Model model) {
         return "login";
@@ -37,21 +32,6 @@ public class PlatinoFoodController {
         return "forget-password";
     }
 
-    @GetMapping("/menu-entradas")
-    public String goToMenuEntradas(Model model) {
-        return "menu-entradas";
-    }
-
-    @GetMapping("/menu-bebidas")
-    public String goToMenuBebidas(Model model) {
-        return "menu-bebidas";
-    }
-
-    @GetMapping("/menu-postres")
-    public String goToMenuPostres(Model model) {
-        return "menu-postres";
-    }
-
     @GetMapping("/admin")
     public String goToAdmin(Model model) {
         return "/admin/index.html";
@@ -70,21 +50,6 @@ public class PlatinoFoodController {
     @GetMapping("/edit-user")
     public String goToEditUserAdmin(Model model) {
         return "/admin/users/edit-user";
-    }
-
-    @GetMapping("/products/products-list")
-    public String goToProductsListAdmin(Model model) {
-        return "/admin/products/products-list";
-    }
-
-    @GetMapping("/add-products")
-    public String goToAddProductsAdmin(Model model) {
-        return "/admin/products/add-products";
-    }
-
-    @GetMapping("/edit-products")
-    public String goToEditProductsAdmin(Model model) {
-        return "/admin/products/edit-products";
     }
 
     @GetMapping("/reservations/reservations-list")

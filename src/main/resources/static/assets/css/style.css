@@ -101,3 +101,9 @@ a:hover {
     color: #b55454 !important;
     text-decoration: none;
 }
+
+.bagde-text-center{
+ text-align: center;   
+ font-size: 20px;
+ margin-top: auto;
+}

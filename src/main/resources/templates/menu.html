@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -79,146 +79,22 @@
     <hr />
     <section class="container">
         <div class="row row-cols-2 row-cols-md-4 g-4">
-            <div class="col">
+            <div th:each="product : ${productList}"  class="col">
                 <div class="card card-height mt-4">
-                    <img src="assets/img/1.jpg" class="card-img-top img-card" alt="img">
+                    <img  th:src="@{${'/assets/img/' + product.image}}" class="img-card-size" alt="img">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content. This content is a little bit longer.</p>
+                        <h5 th:text="${product.name}" class="card-title">Card title</h5>
+                        <p th:text="${product.description}" class="card-text card-text-sz" ></p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
+                        <li class="list-group-item">$ <span th:text="${product.price}"></span></li>
                     </ul>
                     <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/2.jpg" class="card-img-top" height="173px" width="259px" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/3.jpg" class="card-img-top" height="173px" width="259px" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/10295572_4281021.jpg" class="card-img-top" height="173px" width="259px"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content. This content is a little bit longer.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
+                        <a href="/login" class="card-link color-red">Ordenar</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row row-cols-2 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/1.jpg" class="card-img-top" height="173px" width="259px" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content. This content is a little bit longer.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/2.jpg" class="card-img-top" height="173px" width="259px" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content. This content is a little bit longer.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/3.jpg" class="card-img-top" height="173px" width="259px" alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-height mt-4">
-                    <img src="assets/img/10295572_4281021.jpg" class="card-img-top" height="173px" width="259px"
-                        alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text card-text-sz">This is a longer card with supporting text below as a natural
-                            lead-in to
-                            additional content. This content is a little bit longer.</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">$ 24500</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="login.html" class="card-link color-red">Reservar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </section>
 
       <div class="container border-top mt-4" >

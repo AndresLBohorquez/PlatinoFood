@@ -54,3 +54,8 @@
     text-decoration: none;
     color: #b55454 !important;
 }
+
+.img-card-size{
+    width: 100%;
+    height: 140px;
+}
