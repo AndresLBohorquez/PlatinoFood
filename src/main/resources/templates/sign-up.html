@@ -62,41 +62,41 @@
                                     Sesión</a></span>
                         </div>
                         <!-- Form -->
-                        <form>
+                        <form th:action="@{/sign-up}" th:object="${user}" method="POST">
                             <!-- Nombre -->
                             <div class="form-group">
                                 <label for="username" class="form-label">Nombre</label>
-                                <input type="text" id="name" class="form-control" name="name" placeholder="Nombre"
+                                <input th:field="*{firstName}" type="text" id="name" class="form-control" name="name" placeholder="Nombre"
                                     required />
                             </div>
                             <!-- Apellido -->
                             <div class="form-group mt-3">
                                 <label for="lastname" class="form-label">Apellido</label>
-                                <input type="text" id="lastname" class="form-control" name="lastname"
+                                <input th:field="*{lastName}" type="text" id="lastname" class="form-control" name="lastname"
                                     placeholder="Apellido" required />
                             </div>
                             <!-- Email -->
                             <div class="form-group mt-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" name="email" placeholder="Email"
+                                <input th:field="*{email}" type="email" id="email" class="form-control" name="email" placeholder="Email"
                                     required />
                             </div>
                             <!-- Direccion -->
                             <div class="form-group">
                                 <label for="address" class="form-label">Direccion</label>
-                                <input type="text" id="address" class="form-control" name="name" placeholder="Direccion"
+                                <input th:field="*{address}" type="text" id="address" class="form-control" name="name" placeholder="Direccion"
                                     required />
                             </div>
                             <!-- Telefono -->
                             <div class="form-group mt-3">
                                 <label for="phone" class="form-label">Telefono</label>
-                                <input type="text" id="phone" class="form-control" name="Telefono"
+                                <input th:field="*{phone}" type="text" id="phone" class="form-control" name="Telefono"
                                     placeholder="Telefono" required />
                             </div>
                             <!-- Password -->
                             <div class="form-group mt-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" id="password" class="form-control" name="password"
+                                <input th:field="*{password}" type="password" id="password" class="form-control" name="password"
                                     placeholder="**************" required />
                             </div>
                             <!-- Checkbox -->

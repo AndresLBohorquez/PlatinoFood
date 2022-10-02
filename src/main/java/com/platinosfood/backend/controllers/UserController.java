@@ -1,10 +1,10 @@
 package com.platinosfood.backend.controllers;
 
+import com.platinosfood.backend.entities.Role;
 import com.platinosfood.backend.entities.User;
 import com.platinosfood.backend.services.RoleService;
 import com.platinosfood.backend.services.UserService;
-import java.util.Calendar;
-import java.util.Date;
+import com.platinosfood.backend.util.DateHour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +21,8 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+    
+    DateHour dh = new DateHour();
 
     @GetMapping("/users/user-list")
     public String goToUserListAdmin(Model model) {
@@ -42,10 +44,10 @@ public class UserController {
         return "/admin/users/edit-user";
     }
 
-    @PostMapping("/user-list")
+    @PostMapping("/add-user")
     public String addUser(@ModelAttribute("user") User user) {
-        Date date = Calendar.getInstance().getTime();
-        user.setRegisterDate(date);
+        user.setRegisterDate(dh.date() + " " + dh.hour());
+        user.setEnable(true);
         userService.addUser(user);
         return "redirect:/users/user-list";
     }
@@ -69,5 +71,28 @@ public class UserController {
     public String deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
         return "redirect:/users/user-list";
+    }
+
+    @GetMapping("/sign-up")
+    public String goToUserRegister(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "sign-up";
+    }
+
+    
+    @PostMapping("/sign-up")
+    public String userRegister(@ModelAttribute("user") User user) {
+        try {
+            user.setRegisterDate(dh.date() + " " + dh.hour());
+            Role role = new Role();
+            role.setId(2);
+            user.setRole(role);
+            user.setEnable(true);
+            userService.addUser(user);
+        } catch (Exception e) {
+            System.out.println("com.platinosfood.backend.controllers.UserController.userRegister()" + e.getMessage());
+        }
+        return "redirect:/menu";
     }
 }

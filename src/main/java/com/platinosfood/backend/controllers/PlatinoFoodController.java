@@ -12,11 +12,6 @@ public class PlatinoFoodController {
         return "login";
     }
 
-    @GetMapping("/sign-up")
-    public String goToSignUp(Model model) {
-        return "sign-up";
-    }
-
     @GetMapping("/terms")
     public String goToTerms(Model model) {
         return "terms";
@@ -30,11 +25,6 @@ public class PlatinoFoodController {
     @GetMapping("/forget-password")
     public String goToForgetPassword(Model model) {
         return "forget-password";
-    }
-
-    @GetMapping("/admin")
-    public String goToAdmin(Model model) {
-        return "/admin/index.html";
     }
 
     @GetMapping("/reservations/reservations-list")

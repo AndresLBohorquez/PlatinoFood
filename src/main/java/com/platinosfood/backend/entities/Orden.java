@@ -1,6 +1,5 @@
 package com.platinosfood.backend.entities;
 
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +34,7 @@ public class Orden {
     private User user;
 
     @Column
-    private Date orderDate;
+    private String orderDate;
 
     @Column
     private double total;

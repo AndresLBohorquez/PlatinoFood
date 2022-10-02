@@ -1,6 +1,5 @@
 package com.platinosfood.backend.entities;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,14 +45,14 @@ public class User {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column
     private boolean enable;
 
     @Column
-    private Date registerDate;
+    private String registerDate;
 
     @Column
-    private Date accessDate;
+    private String accessDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
