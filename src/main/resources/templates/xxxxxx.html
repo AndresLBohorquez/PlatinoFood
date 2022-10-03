@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <!-- Mirrored from demo.bootstrapious.com/directory/1-6-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Feb 2021 23:38:30 GMT -->
 
 <head>
@@ -61,7 +61,7 @@
                                     class="ml-1 decoration-none-red">Registrarse</a></span>
                         </div>
                         <!-- Form -->
-                        <form th:action="@{/login}" method="post">
+                        <form>
                             <!-- Username -->
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
@@ -69,11 +69,11 @@
                                     placeholder="por favor ingrese su email" required>
                             </div>
                             <!-- Password -->
-                            
+                            <div class="form-group mt-3">
                                 <label for="password" class="form-label">Contraseña</label>
                                 <input type="password" id="password" class="form-control" name="password"
                                     placeholder="**************" required>
-                            
+                            </div>
                             <!-- Checkbox -->
                             <div class="d-lg-flex justify-content-between align-items-center mb-4">
                                 <div>
@@ -92,12 +92,6 @@
                             <hr class="my-4">
 
                         </form>
-                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
-		            Invalid username and password.
-		        </div>
-		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
-		            You have been logged out.
-		        </div>
                     </div>
                 </div>
             </div>

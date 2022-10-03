@@ -65,14 +65,14 @@
                         <form th:action="@{/sign-up}" th:object="${user}" method="POST">
                             <!-- Nombre -->
                             <div class="form-group">
-                                <label for="username" class="form-label">Nombre</label>
-                                <input th:field="*{firstName}" type="text" id="name" class="form-control" name="name" placeholder="Nombre"
+                                <label for="userName" class="form-label">Nombre</label>
+                                <input th:field="*{firstName}" type="text" id="firstName" class="form-control" name="firstName" placeholder="Nombre"
                                     required />
                             </div>
                             <!-- Apellido -->
                             <div class="form-group mt-3">
-                                <label for="lastname" class="form-label">Apellido</label>
-                                <input th:field="*{lastName}" type="text" id="lastname" class="form-control" name="lastname"
+                                <label for="lastName" class="form-label">Apellido</label>
+                                <input th:field="*{lastName}" type="text" id="lastName" class="form-control" name="lastName"
                                     placeholder="Apellido" required />
                             </div>
                             <!-- Email -->
@@ -84,13 +84,13 @@
                             <!-- Direccion -->
                             <div class="form-group">
                                 <label for="address" class="form-label">Direccion</label>
-                                <input th:field="*{address}" type="text" id="address" class="form-control" name="name" placeholder="Direccion"
+                                <input th:field="*{address}" type="text" id="address" class="form-control" name="address" placeholder="Direccion"
                                     required />
                             </div>
                             <!-- Telefono -->
                             <div class="form-group mt-3">
                                 <label for="phone" class="form-label">Telefono</label>
-                                <input th:field="*{phone}" type="text" id="phone" class="form-control" name="Telefono"
+                                <input th:field="*{phone}" type="text" id="phone" class="form-control" name="phone"
                                     placeholder="Telefono" required />
                             </div>
                             <!-- Password -->
@@ -102,7 +102,7 @@
                             <!-- Checkbox -->
                             <div class="form-group mt-2">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="agreeCheck" />
+                                    <input type="checkbox" class="custom-control-input" id="agreeCheck" required="true"/>
                                     <label class="custom-control-label" for="agreeCheck"><span>Acepto <a
                                                 class="decoration-none-red" href="/terms">
                                                 Términos de Servicio </a> y <a class="decoration-none-red"
