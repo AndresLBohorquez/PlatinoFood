@@ -31,7 +31,7 @@ public class Orden {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
-    private User user;
+    private Usuario user;
 
     @Column
     private String orderDate;

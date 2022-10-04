@@ -1,30 +1,30 @@
 package com.platinosfood.backend.services.impl;
 
-import com.platinosfood.backend.entities.User;
-import com.platinosfood.backend.repositories.UserRepository;
-import com.platinosfood.backend.services.UserService;
+import com.platinosfood.backend.entities.Usuario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.platinosfood.backend.repositories.UsuarioRepository;
+import com.platinosfood.backend.services.UsuarioService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
     @Override
-    public List<User> getUsers() {
+    public List<Usuario> getUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User addUser(User user) {
+    public Usuario addUser(Usuario user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User editUser(User user) {
+    public Usuario editUser(Usuario user) {
         return userRepository.save(user);
     }
 
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public Usuario getUserById(int id) {
         return userRepository.findById(id).get();
     }
 

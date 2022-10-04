@@ -1,9 +1,8 @@
 package com.platinosfood.backend.controllers;
 
 import com.platinosfood.backend.entities.Role;
-import com.platinosfood.backend.entities.User;
+import com.platinosfood.backend.entities.Usuario;
 import com.platinosfood.backend.services.RoleService;
-import com.platinosfood.backend.services.UserService;
 import com.platinosfood.backend.util.DateHour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,16 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.platinosfood.backend.services.UsuarioService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
-public class UserController {
+public class UsuarioController {
 
     @Autowired
-    private UserService userService;
+    private UsuarioService userService;
 
     @Autowired
     private RoleService roleService;
-    
+
+    @Autowired
+    private final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder(4);
+
     DateHour dh = new DateHour();
 
     @GetMapping("/users/user-list")
@@ -32,7 +36,7 @@ public class UserController {
 
     @GetMapping("/add-user")
     public String goToAddUserAdmin(Model model) {
-        User user = new User();
+        Usuario user = new Usuario();
         model.addAttribute("roles", roleService.getRoles());
         model.addAttribute("user", user);
         return "/admin/users/add-user";
@@ -45,16 +49,19 @@ public class UserController {
     }
 
     @PostMapping("/add-user")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute("user") Usuario user) {
         user.setRegisterDate(dh.date() + " " + dh.hour());
         user.setEnable(true);
+        user.setUsername(user.getEmail());
+        user.setPassword(ENCODER.encode(user.getPassword()));
+
         userService.addUser(user);
         return "redirect:/users/user-list";
     }
 
     @PostMapping("/user-list/{id}")
-    public String editUser(@PathVariable int id, @ModelAttribute("user") User user, Model model) {
-        User userSelect = userService.getUserById(id);
+    public String editUser(@PathVariable int id, @ModelAttribute("user") Usuario user, Model model) {
+        Usuario userSelect = userService.getUserById(id);
         userSelect.setId(user.getId());
         userSelect.setAddress(user.getAddress());
         userSelect.setEmail(user.getEmail());
@@ -75,20 +82,21 @@ public class UserController {
 
     @GetMapping("/sign-up")
     public String goToUserRegister(Model model) {
-        User user = new User();
+        Usuario user = new Usuario();
         model.addAttribute("user", user);
         return "sign-up";
     }
 
-    
     @PostMapping("/sign-up")
-    public String userRegister(@ModelAttribute("user") User user) {
+    public String userRegister(@ModelAttribute("user") Usuario user) {
         try {
             user.setRegisterDate(dh.date() + " " + dh.hour());
             Role role = new Role();
             role.setId(2);
             user.setRole(role);
             user.setEnable(true);
+            user.setUsername(user.getEmail());
+            user.setPassword(ENCODER.encode(user.getPassword()));
             userService.addUser(user);
         } catch (Exception e) {
             System.out.println("com.platinosfood.backend.controllers.UserController.userRegister()" + e.getMessage());

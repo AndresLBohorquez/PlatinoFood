@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Usuario {
 
     @Id
     @Column(nullable = false)
@@ -35,6 +35,9 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+    
+    @Column
+    private String username;
 
     @Column(nullable = false)
     private String password;
