@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class ProductController {
     }
 
     @GetMapping("/menu-entradas")
-    public String goToMenuEntradas(Model model) {
+    public String goToMenuEntradas(Model model, Authentication auth) {
         model.addAttribute("productList", productService.getProductsByCategoryId(2));
         return "menu-entradas";
     }
@@ -67,6 +68,7 @@ public class ProductController {
 
     @GetMapping("/edit-products/{id}")
     public String goToEditProductsAdmin(@PathVariable int id, Model model) {
+        model.addAttribute("categoryList", categoryService.getCategories());
         model.addAttribute("product", productService.getProductById(id));
         return "/admin/products/edit-products";
     }

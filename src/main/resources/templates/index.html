@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/sweetalert.css">
+    <title>Platino's Food</title>
+</head>
+
+<body>
+    <!-- Nav -->
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <i class="bi bi-list"></i> <svg width="40" height="32">
+                </svg>
+                <span class="fs-4 color-red">Platino's Food</span>
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link active" >Inicio</a></li>
+                <li class="nav-item"><a href="/menu" class="nav-link color-red" >Menú</a></li>
+                <li th:if="${usuarioLog == null}" class="nav-item"><a href="/login"
+                        class="nav-link color-red">Ingresar</a></li>
+                <li th:if="${usuarioLog == null}" class="nav-item"><a href="/sign-up"
+                        class="nav-link color-red">Registrarse</a></li>
+                <li th:if="${usuarioLog != null}" class="nav-item dropdown"
+                    style="margin-left: 5px;">
+
+
+                    <div class="dropdown">
+
+                        <button class="btn dropdown-toggle ico-profile" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-bounding-box"></i>
+
+
+                        </button>
+                        <ul class="dropdown-menu dropdown">
+                            <li class="pad color-red">[[${#httpServletRequest.remoteUser}]]</li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item color-red" href="/profile">Perfil</a></li>
+                            <li><a class="dropdown-item color-red" href="#">Ordenes</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <input class="dropdown-item btn-logout" type="submit" value="Cerrar Sesion" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+            </ul>
+        </header>
+    </div>
+
+    <section>
+        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-1 px-md-5 text-center text-white overflow-hidden">
+            <div class="my-3 py-3">
+                <h2 class="display-5">Platino's Food</h2>
+                <p class="lead">¡Sushi listo cuando llegues al restaurante!</p>
+            </div>
+            <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="assets/img/10295572_4281021.jpg" class="img-sz" alt="img">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="assets/img/3191333.jpg" class="img-sz" alt="img">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="assets/img/7738132_3671244.jpg" class="img-sz" alt="img">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="assets/img/Imagen2.jpg" class="img-sz" alt="img">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="assets/img/Imagen3.jpg" class="img-sz" alt="img">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="assets/img/Imagen4.jpg" class="img-sz" alt="img">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev w-50" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next w-50" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <hr />
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-md-5 mx-auto">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 color-red">Especialidad 1</strong>
+                        <h3 class="mb-0">Sushi Rojo</h3>
+                        <div class="mb-1 text-muted">$ 26500</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
+                            lead-in to
+                            additional content.</p>
+                        <a href="/menu" class="stretched-link"></a>
+                    </div>
+
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="assets/img/1.jpg" width="200" height="250" alt="img">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-5 mx-auto">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 color-red">Especialidad 2</strong>
+                        <h3 class="mb-0">Sushi Blanco</h3>
+                        <div class="mb-1 text-muted">$ 21300</div>
+                        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to
+                            additional content.</p>
+                        <a href="/menu" class="stretched-link"></a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="assets/img/2.jpg" width="200" height="250" alt="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">Platino's Food</h2>
+
+                        <p>This blog post shows a few different types of content that’s supported and styled with
+                            Bootstrap. Basic
+                            typography, images, and code are all supported.</p>
+                        <hr>
+                        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur
+                            ridiculus mus.
+                            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
+                            consectetur
+                            est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                        <blockquote>
+                            <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong>
+                                ornare vel eu
+                                leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        </blockquote>
+                        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit
+                            amet
+                            fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+
+                    </div>
+                </div>
+                <aside class="col-md-4 blog-sidebar">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="font-italic">Nota</h4>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. <em>Natus deserunt amet
+                            iusto autem quam eaque</em>, perferendis nisi. Impedit illo ut inventore accusamus debitis. Quod
+                            voluptate autem iusto obcaecati saepe iure.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="container border-top mt-4">
+        <footer class="py-5 my-4">
+            <div class="row mx-auto">
+                <div class="col-md-8 col-md-6 mb-3">
+                    <h5>Contacto</h5>
+                    <p>(60) 4 5443357</p>
+                </div>
+
+                <div class="col-md-1 offset-md-1 mb-3">
+                    <h5>Email</h5>
+                    <p>platinosfood@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top mx-3">
+                <p>© 2022 Platino's Food. <small class="text-muted">Derechos reservados.</small> </p>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex mx-5">
+
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://twitter.com/?lang=es"><i
+                                class="bi bi-twitter"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.instagram.com"><i
+                                class="bi bi-instagram"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.facebook.com"><i
+                                class="bi bi-facebook"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

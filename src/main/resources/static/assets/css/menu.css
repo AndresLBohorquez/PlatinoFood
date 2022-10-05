@@ -18,6 +18,10 @@
     background-color: #b55454;
 }
 
+.avatar {
+    max-width: 35px;
+}
+
 .color-red {
     color: #b55454;
     text-decoration: none;
@@ -59,3 +63,25 @@
     width: 100%;
     height: 140px;
 }
+
+.btn-logout{
+    background-color: #fff;
+    border: none;
+    color: #b55454;
+    text-decoration: none;
+}
+
+.ico-profile{
+    font-size: 20px;
+    background-color: #fff;
+    border: none;
+    color: #b55454;
+    text-decoration: none;
+    --bs-btn-hover-color: #b55454;
+}
+
+.pad{
+    font-weight: bold;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+}
+

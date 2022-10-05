@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +19,7 @@
     <!-- Nav -->
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <i class="bi bi-list"></i> <svg width="40" height="32">
                 </svg>
                 <span class="fs-4 color-red">Platino's Food</span>
@@ -27,8 +27,41 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link color-red">Inicio</a></li>
                 <li class="nav-item"><a href="/menu" class="nav-link active">Menú</a></li>
-                <li class="nav-item"><a href="/login" class="nav-link color-red">Ingresar</a></li>
-                <li class="nav-item"><a href="/sign-up" class="nav-link color-red">Registrarse</a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="nav-item"><a href="/login"
+                        class="nav-link color-red">Ingresar</a></li>
+                <li th:if="${#httpServletRequest.remoteUser == null}" class="nav-item"><a href="/sign-up"
+                        class="nav-link color-red">Registrarse</a></li>
+                <li th:if="${#httpServletRequest.remoteUser != null}" class="nav-item dropdown"
+                    style="margin-left: 5px;">
+
+
+                    <div class="dropdown">
+
+                        <button class="btn dropdown-toggle ico-profile" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-bounding-box"></i>
+
+
+                        </button>
+                        <ul class="dropdown-menu dropdown">
+                            <li class="pad color-red">[[${#httpServletRequest.remoteUser}]]</li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item color-red" href="/profile">Perfil</a></li>
+                            <li><a class="dropdown-item color-red" href="#">Ordenes</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <input class="dropdown-item btn-logout" type="submit" value="Cerrar Sesion" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
             </ul>
         </header>
     </div>
@@ -79,26 +112,39 @@
     <hr />
     <section class="container">
         <div class="row row-cols-2 row-cols-md-4 g-4">
-            <div th:each="product : ${productList}"  class="col">
+            <div th:each="product : ${productList}" class="col">
                 <div class="card card-height mt-4">
-                    <img  th:src="@{${'/assets/img/' + product.image}}" class="img-card-size" alt="img">
+                    <img th:src="@{${'/assets/img/' + product.image}}" class="img-card-size" alt="img">
                     <div class="card-body">
                         <h5 th:text="${product.name}" class="card-title">Card title</h5>
-                        <p th:text="${product.description}" class="card-text card-text-sz" ></p>
+                        <p th:text="${product.description}" class="card-text card-text-sz"></p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">$ <span th:text="${product.price}"></span></li>
                     </ul>
                     <div class="card-body">
-                        <a href="/login" class="card-link color-red">Ordenar</a>
+                        <div class="row">
+                            <div class="col-md-8 mt-2">
+                                <a th:if="${#httpServletRequest.remoteUser == null}" href="/login"
+                                    class="card-link color-red">Ordenar</a>
+                            </div>
+                            <div class="col-md-8 mt-2">
+                                <a th:if="${#httpServletRequest.remoteUser != null}" href="/orden"
+                                    class="card-link color-red">Ordenar</a>
+                            </div>
+                            <div class="col">
+                                <a th:if="${#httpServletRequest.remoteUser != null}" href="/addCart"><i
+                                        class=" btn bi bi-cart-plus color-red"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-      <div class="container border-top mt-4" >
-        <footer class="py-5 my-4 " >
+    <div class="container border-top mt-4">
+        <footer class="py-5 my-4 ">
             <div class="row mx-auto">
                 <div class="col-md-8 col-md-6 mb-3">
                     <h5>Contacto</h5>
@@ -115,9 +161,12 @@
                 <p>© 2022 Platino's Food. <small class="text-muted">Derechos reservados.</small> </p>
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-flex mx-5">
 
-                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://twitter.com/?lang=es"><i class="bi bi-twitter"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.instagram.com"><i class="bi bi-instagram"></i></a></li>
-                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.facebook.com"><i class="bi bi-facebook"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://twitter.com/?lang=es"><i
+                                class="bi bi-twitter"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.instagram.com"><i
+                                class="bi bi-instagram"></i></a></li>
+                    <li class="ms-3"><a class="text-muted" target="_blank" href="https://www.facebook.com"><i
+                                class="bi bi-facebook"></i></a></li>
                 </ul>
             </div>
         </footer>

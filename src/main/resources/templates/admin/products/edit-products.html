@@ -52,7 +52,7 @@
                     Productos</a>
                 <a href="/reservations/reservations-list" class="d-block text-light p-3 border-0"><i
                         class="bi bi-card-checklist mr-2"></i>
-                    Reservaciones</a>
+                        Órdenes</a>
 
             </div>
         </div>
@@ -118,6 +118,7 @@
                             <form th:action="@{/products-list/{id}(id=${product.id})}" th:object="${product}" method="POST">
                                 <div class="form-group">
                                     <div class="row">
+                                        <input type="hidden" id="id" th:field="*{id}" name="id" >
                                         <div class="col-6">
                                             <label for="inputName">Nombre</label>
                                             <input type="text" class="form-control" id="inputName" th:field="*{name}" name="name" required="true">
@@ -125,10 +126,9 @@
                                         <div class="col-6">
                                             <label for="inputCategoria">Categoria</label>
                                             <select th:field="*{category}" name="category" class="form-control">
-                                                <option th:each="category : ${categories}"
-                                                        th:value="${category.id}"
-                                                        th:text="${category.name}"
-                                                        />
+                                                <option th:each="categoria : ${categoryList}"
+                                                        th:value="${categoria.id}"
+                                                        th:text="${categoria.name}"/>
                                             </select>
                                         </div>
                                     </div>

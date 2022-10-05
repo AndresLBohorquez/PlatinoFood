@@ -15,4 +15,6 @@ public interface UsuarioService {
 
     public void deleteUser(int id);
 
+    public Usuario getUsuarioByUsername(String username);
+
 }

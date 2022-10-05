@@ -1,5 +1,6 @@
 package com.platinosfood.backend.controllers;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,10 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PlatinoFoodController {
 
-    @GetMapping("/login")
-    public String goToLogin(Model model) {
-        return "login";
-    }
+    
 
     @GetMapping("/terms")
     public String goToTerms(Model model) {

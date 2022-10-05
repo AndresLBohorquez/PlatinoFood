@@ -52,7 +52,7 @@
                     Productos</a>
                 <a href="/reservations/reservations-list" class="d-block text-light p-3 border-0"><i
                         class="bi bi-card-checklist mr-2"></i>
-                    Reservaciones</a>
+                        Órdenes</a>
 
             </div>
         </div>
@@ -115,10 +115,11 @@
                     <div class="container shadow-lg p-3 mb-5 bg-body rounded">
                         <div class="card-body">
 
-                            <form th:action="@{/user-list}" th:object="${user}" method="POST">
+                            <form th:action="@{/edit-user/{id}(id=${user.id})}" th:object="${user}" method="POST">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-6">
+                                            <input type="hidden" th:field="*{id}" name="id">
                                             <label for="InputName">Nombre</label>
                                             <input type="text" th:field="*{firstName}" name="firstName"
                                                 class="form-control" id="InputName" placeholder="Nombre">
@@ -165,8 +166,9 @@
                                         <div class="col-6">
                                             <label for="inputRol">Rol</label>
                                             <select th:field="*{role}" name="role" class="form-control">
-                                                <option th:each="rol : ${roles}" th:value="${rol.id}"
-                                                    th:text="${rol.name}" />
+                                                <option th:each="rol : ${roles}" 
+                                                        th:value="${rol.id}" 
+                                                        th:text="${rol.name}" />
                                             </select>
                                         </div>
                                     </div>
@@ -176,11 +178,13 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <label for="exampleInputFirstDate">Fecha de Registro</label>
-                                                <label th:text="${user.registerDate}" class="form-control" id="exampleInputFirstDate"/>
+                                                <label th:text="${user.registerDate}" class="form-control"
+                                                    id="exampleInputFirstDate" />
                                             </div>
                                             <div class="col-6">
                                                 <label for="exampleInputLastName">Fecha de Último Acceso</label>
-                                                <label th:text="${user.accessDate}" type="text" class="form-control" id="exampleInputLastName"/>
+                                                <label th:text="${user.accessDate}" type="text" class="form-control"
+                                                    id="exampleInputLastName" />
                                             </div>
                                         </div>
                                     </div>
