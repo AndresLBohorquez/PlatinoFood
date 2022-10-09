@@ -20,7 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService userService;
+    private UsuarioService usuarioService;
 
     @Autowired
     private RoleService roleService;
@@ -33,8 +33,7 @@ public class UsuarioController {
     @GetMapping("/")
     public String index(Model model, Authentication auth) {
         try {
-            Usuario usuLog = userService.getUsuarioByUsername(auth.getName());
-            model.addAttribute("usuarioLog", usuLog);
+            model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
         } catch (Exception e) {
             System.out.println("com.platinosfood.backend.controllers.UsuarioController.index()" + e.getMessage());
         }
@@ -48,7 +47,7 @@ public class UsuarioController {
 
     @GetMapping("/users/user-list")
     public String goToUserListAdmin(Model model) {
-        model.addAttribute("userList", userService.getUsers());
+        model.addAttribute("userList", usuarioService.getUsers());
         return "/admin/users/user-list";
     }
 
@@ -66,7 +65,7 @@ public class UsuarioController {
         user.setEnable(true);
         user.setUsername(user.getEmail());
         user.setPassword(ENCODER.encode(user.getPassword()));
-        userService.addUser(user);
+        usuarioService.addUser(user);
         return "redirect:/users/user-list";
     }
 
@@ -74,13 +73,13 @@ public class UsuarioController {
     public String goToEditUserAdmin(@PathVariable("id") int id, Model model) {
         List<Role> roles = roleService.getRoles();
         model.addAttribute("roles", roles);
-        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("user", usuarioService.getUserById(id));
         return "/admin/users/edit-user";
     }
 
     @PostMapping("/edit-user/{id}")
     public String editUser(@PathVariable("id") int id, @ModelAttribute("user") Usuario user, Model model) {
-        Usuario userSelect = userService.getUserById(id);
+        Usuario userSelect = usuarioService.getUserById(id);
         userSelect.setId(user.getId());
         userSelect.setAddress(user.getAddress());
         userSelect.setEmail(user.getEmail());
@@ -89,13 +88,13 @@ public class UsuarioController {
         userSelect.setPassword(ENCODER.encode(user.getPassword()));
         userSelect.setPhone(user.getPhone());
         userSelect.setRole(user.getRole());
-        userService.editUser(userSelect);
+        usuarioService.editUser(userSelect);
         return "redirect:/users/user-list";
     }
 
     @GetMapping("/user-list/{id}")
     public String deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
+        usuarioService.deleteUser(id);
         return "redirect:/users/user-list";
     }
 
@@ -116,7 +115,7 @@ public class UsuarioController {
             user.setEnable(true);
             user.setUsername(user.getEmail());
             user.setPassword(ENCODER.encode(user.getPassword()));
-            userService.addUser(user);
+            usuarioService.addUser(user);
         } catch (Exception e) {
             System.out.println("com.platinosfood.backend.controllers.UserController.userRegister()" + e.getMessage());
         }
@@ -128,7 +127,7 @@ public class UsuarioController {
         Usuario usuLog;
         try {
             if (auth != null) {
-                usuLog = userService.getUsuarioByUsername(auth.getName());
+                usuLog = usuarioService.getUsuarioByUsername(auth.getName());
             } else {
                 usuLog = new Usuario();
             }

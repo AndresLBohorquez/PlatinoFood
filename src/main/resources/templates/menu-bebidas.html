@@ -24,6 +24,7 @@
                 <span class="fs-4 color-red">Platino's Food</span>
             </a>
             <ul class="nav nav-pills">
+                <li th:if="${#httpServletRequest.remoteUser != null}"><a href="/user/carrito" class="nav-item mx-5"> <i class="bi bi-cart-plus color-red" style="font-size: 25px ;"></i><small class="color-red">(0)</small></a></li> 
                 <li class="nav-item"><a href="/" class="nav-link color-red">Inicio</a></li>
                 <li class="nav-item"><a href="/menu" class="nav-link active">Menú</a></li>
                 <li th:if="${#httpServletRequest.remoteUser == null}" class="nav-item"><a href="/login"
@@ -49,6 +50,7 @@
                             </li>
                             <li><a class="dropdown-item color-red" href="/profile">Perfil</a></li>
                             <li><a class="dropdown-item color-red" href="#">Ordenes</a></li>
+                            <li th:if="${usuLog.role.name == 'ADMIN'}"><a class="dropdown-item color-red" th:href="@{/admin}">Admin</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

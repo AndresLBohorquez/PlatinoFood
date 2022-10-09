@@ -24,7 +24,12 @@
                 </svg>
                 <span class="fs-4 color-red">Platino's Food</span>
             </a>
+
+
             <ul class="nav nav-pills">
+                <li th:if="${#httpServletRequest.remoteUser != null}"><a href="/user/carrito" class="nav-item mx-5"> <i
+                            class="bi bi-cart-plus color-red" style="font-size: 25px ;"></i><small
+                            class="color-red">(0)</small></a></li>
                 <li class="nav-item"><a href="/" class="nav-link color-red">Inicio</a></li>
                 <li class="nav-item"><a href="/menu" class="nav-link active">Menú</a></li>
                 <li th:if="${#httpServletRequest.remoteUser == null}" class="nav-item"><a href="/login"
@@ -50,6 +55,7 @@
                             </li>
                             <li><a class="dropdown-item color-red" href="/profile">Perfil</a></li>
                             <li><a class="dropdown-item color-red" href="#">Ordenes</a></li>
+                            <li th:if="${usuLog.role.name == 'ADMIN'}"><a class="dropdown-item color-red" th:href="@{/admin}">Admin</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -133,9 +139,12 @@
                                     class="card-link color-red">Ordenar</a>
                             </div>
                             <div class="col">
-                                <a th:if="${#httpServletRequest.remoteUser != null}" href="/addCart"><i
+                                <a th:if="${#httpServletRequest.remoteUser != null}" th:href="@{/add-cart/{id} (id=${product.id})}"><i
                                         class=" btn bi bi-cart-plus color-red"></i></a>
                             </div>
+
+
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -170,6 +179,27 @@
                 </ul>
             </div>
         </footer>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"

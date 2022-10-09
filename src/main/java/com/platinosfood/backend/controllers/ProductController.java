@@ -1,12 +1,16 @@
 package com.platinosfood.backend.controllers;
 
+import com.platinosfood.backend.entities.Article;
 import com.platinosfood.backend.entities.Product;
 import com.platinosfood.backend.services.CategoryService;
 import com.platinosfood.backend.services.ProductService;
+import com.platinosfood.backend.services.UsuarioService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -27,26 +31,43 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    List<Article> articleList = new ArrayList<>();
+
     @GetMapping("/menu")
-    public String goToMenu(Model model) {
+    public String goToMenu(Model model, Authentication auth) {
+        if (auth != null) {
+            model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
+        }
         model.addAttribute("productList", productService.getProductsByCategoryId(1));
         return "menu";
     }
 
     @GetMapping("/menu-entradas")
     public String goToMenuEntradas(Model model, Authentication auth) {
+        if (auth != null) {
+            model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
+        }
         model.addAttribute("productList", productService.getProductsByCategoryId(2));
         return "menu-entradas";
     }
 
     @GetMapping("/menu-bebidas")
-    public String goToMenuBebidas(Model model) {
+    public String goToMenuBebidas(Model model, Authentication auth) {
+        if (auth != null) {
+            model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
+        }
         model.addAttribute("productList", productService.getProductsByCategoryId(3));
         return "menu-bebidas";
     }
 
     @GetMapping("/menu-postres")
-    public String goToMenuPostres(Model model) {
+    public String goToMenuPostres(Model model, Authentication auth) {
+        if (auth != null) {
+            model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
+        }
         model.addAttribute("productList", productService.getProductsByCategoryId(4));
         return "menu-postres";
     }
@@ -113,4 +134,30 @@ public class ProductController {
         return "redirect:/products/products-list";
     }
 
+    @GetMapping("/user/carrito")
+    public String goToCarrito(Model model) {
+        return "user/carrito";
+    }
+
+    @GetMapping("/add-cart/{id}")
+    public String goToCart(@PathVariable int id, Model model) {
+        Article art = new Article();
+        var product = productService.getProductById(id);
+        art.setId(id);
+        art.setName(product.getName());
+        art.setDescription(product.getDescription());
+        art.setImage(product.getImage());
+        art.setPrice(product.getPrice());
+        art.setQuantity(1);
+        articleList.add(art);
+        model.addAttribute("article", art);
+        model.addAttribute("articleList", articleList);
+        return "user/add-cart";
+    }
+
+    @PostMapping("/add-cart")
+    public String addToCart(@ModelAttribute("article") Article article, Model model) {
+
+        return "/user/carrito";
+    }
 }

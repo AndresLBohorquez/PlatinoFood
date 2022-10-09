@@ -78,7 +78,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Mi perfil</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                    <form th:action="@{/logout}" method="post">
+                                        <input class="dropdown-item btn-logout" type="submit" value="Cerrar Sesión" />
+                                    </form>
+                                    
                                     
                                 </div>
                             </li>
