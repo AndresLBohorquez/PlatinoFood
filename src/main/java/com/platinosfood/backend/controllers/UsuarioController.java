@@ -1,7 +1,9 @@
 package com.platinosfood.backend.controllers;
 
+import com.platinosfood.backend.entities.Orden;
 import com.platinosfood.backend.entities.Role;
 import com.platinosfood.backend.entities.Usuario;
+import com.platinosfood.backend.services.OrdenService;
 import com.platinosfood.backend.services.RoleService;
 import com.platinosfood.backend.util.DateHour;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.platinosfood.backend.services.UsuarioService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +27,9 @@ public class UsuarioController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private OrdenService ordenService;
 
     @Autowired
     private final BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder(4);
@@ -139,4 +145,23 @@ public class UsuarioController {
         return "/user/profile";
     }
 
+    @GetMapping("/user-reservations")
+    public String goToUserReservations(Model model, Authentication auth) {
+        Usuario usuLog = new Usuario();
+        List<Orden> ordenList = new ArrayList<>();
+
+        if (auth != null) {
+            usuLog = usuarioService.getUsuarioByUsername(auth.getName());
+
+            try {
+                ordenList = ordenService.getOrdenesByIdUsuario(usuLog.getId());
+            } catch (Exception e) {
+                System.out.println("com.platinosfood.backend.controllers.UsuarioController.goToUserReservations()" + e.getMessage());
+            }
+
+        }
+        model.addAttribute("ordenListUsu", ordenList);
+        model.addAttribute("usuLog", usuLog);
+        return "user/user-reservations";
+    }
 }

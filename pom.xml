@@ -11,7 +11,7 @@
     <groupId>com.platinosfood</groupId>
     <artifactId>PlatinoFood</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>PlatinoFood</name>
     <description>Proyecto Spring Boot</description>
     <properties>

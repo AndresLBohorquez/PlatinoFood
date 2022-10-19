@@ -22,18 +22,6 @@ public class PlatinoFoodController {
         return "forget-password";
     }
 
-    @GetMapping("/reservations/reservations-list")
-    public String goToReservationsListAdmin(Model model) {
-        return "/admin/reservations/reservations-list";
-    }
 
-    @GetMapping("/user")
-    public String goToUser(Model model) {
-        return "user/profile";
-    }
-
-    @GetMapping("/user-reservations")
-    public String goToUserReservations(Model model) {
-        return "user/user-reservations";
-    }
+    
 }

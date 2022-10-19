@@ -1,8 +1,11 @@
 package com.platinosfood.backend.controllers;
 
+import com.platinosfood.backend.entities.Orden;
 import com.platinosfood.backend.entities.Usuario;
+import com.platinosfood.backend.services.OrdenService;
 import com.platinosfood.backend.services.ProductService;
 import com.platinosfood.backend.services.UsuarioService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ public class AdminController {
 
     @Autowired
     private UsuarioService usuarioService;
+    
+    @Autowired
+    private OrdenService ordenService;
 
     @GetMapping("/admin")
     public String goToAdmin(Model model, Authentication auth) {
@@ -34,8 +40,25 @@ public class AdminController {
         }
         var quantity = productService.getProducts().size();
         var totalUsers = usuarioService.getUsers().size();
+        List<Orden> ordenList = ordenService.getOrdenes();
+        model.addAttribute("orderList", ordenList);
+        double ingreso = 0;
+        
+        for (Orden orden : ordenList) {
+            if (!orden.getOrderStatus().getName().equals("Cancelada")) {
+                ingreso  += orden.getTotal();
+            }
+        }
+        model.addAttribute("ingresos", ingreso);
         model.addAttribute("quantity", quantity);
         model.addAttribute("totalUsers", totalUsers);
         return "/admin/index.html";
+    }
+
+    @GetMapping("/reservations/reservations-list")
+    public String goToReservationsListAdmin(Model model) {
+        List<Orden> ordenList = ordenService.getOrdenes();
+        model.addAttribute("orderList", ordenList);
+        return "/admin/reservations/reservations-list";
     }
 }

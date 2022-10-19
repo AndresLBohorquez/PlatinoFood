@@ -29,7 +29,7 @@
             <ul class="nav nav-pills">
                 <li th:if="${#httpServletRequest.remoteUser != null}"><a href="/user/carrito" class="nav-item mx-5"> <i
                             class="bi bi-cart-plus color-red" style="font-size: 25px ;"></i><small
-                            class="color-red">(0)</small></a></li>
+                            th:text="'(' + ${listaArticulos.size} + ')'" class="color-red">(0)</small></a></li>
                 <li class="nav-item"><a href="/" class="nav-link color-red">Inicio</a></li>
                 <li class="nav-item"><a href="/menu" class="nav-link active">Menú</a></li>
                 <li th:if="${#httpServletRequest.remoteUser == null}" class="nav-item"><a href="/login"
@@ -90,7 +90,7 @@
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3 color-red">Producto</h4>
                     <div class="table-responsive">
-                        <form th:action="@{/user/carrito}" th:object="${article}" method="POST">
+                        <form th:action="@{/add-cart/{id} (id=${article.id})}" th:object="${article}" method="Request">
                             <table class="table text-center">
                                 <thead>
                                     <tr>
@@ -102,19 +102,17 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <input type="hidden" th:field="*{id}" name="id">
                                         <th th:text="${article.name}" th:field="*{name}" name="name" scope="row"
                                             class="text-start ">Nombre Producto
                                         </th>
-                                        <td><input type="number" th:field="*{quantity}" name="quantity"
-                                                class="text-center" min="1" value="1"></td>
+                                        <td><input type="number" class="text-center" min="1" value="1"/></td>
                                         <td th:text="'$ ' + ${article.price}">Precio</td>
 
                                     </tr>
                                 </tbody>
                             </table>
-                            <button type="submit" class="w-100 btn btn-lg btn-success">Agregar</button>
-                        </form>
+                            <button type="submit" class="w-100 btn btn-lg btn-success" th:href="@{/user/carrito}">Agregar</button>
+                        </h:form>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,16 @@
 package com.platinosfood.backend.controllers;
 
 import com.platinosfood.backend.entities.Article;
+import com.platinosfood.backend.entities.Orden;
+import com.platinosfood.backend.entities.OrderStatus;
 import com.platinosfood.backend.entities.Product;
+import com.platinosfood.backend.entities.Usuario;
 import com.platinosfood.backend.services.CategoryService;
+import com.platinosfood.backend.services.OrdenService;
 import com.platinosfood.backend.services.ProductService;
 import com.platinosfood.backend.services.UsuarioService;
+import com.platinosfood.backend.util.CodeGenerator;
+import com.platinosfood.backend.util.DateHour;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,6 +40,12 @@ public class ProductController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private OrdenService ordenService;
+
+    DateHour dh = new DateHour();
+    CodeGenerator cg = new CodeGenerator();
+
     List<Article> articleList = new ArrayList<>();
 
     @GetMapping("/menu")
@@ -42,6 +54,7 @@ public class ProductController {
             model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
         }
         model.addAttribute("productList", productService.getProductsByCategoryId(1));
+        model.addAttribute("listaArticulos", articleList);
         return "menu";
     }
 
@@ -51,6 +64,7 @@ public class ProductController {
             model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
         }
         model.addAttribute("productList", productService.getProductsByCategoryId(2));
+        model.addAttribute("listaArticulos", articleList);
         return "menu-entradas";
     }
 
@@ -60,6 +74,7 @@ public class ProductController {
             model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
         }
         model.addAttribute("productList", productService.getProductsByCategoryId(3));
+        model.addAttribute("listaArticulos", articleList);
         return "menu-bebidas";
     }
 
@@ -69,6 +84,7 @@ public class ProductController {
             model.addAttribute("usuLog", usuarioService.getUsuarioByUsername(auth.getName()));
         }
         model.addAttribute("productList", productService.getProductsByCategoryId(4));
+        model.addAttribute("listaArticulos", articleList);
         return "menu-postres";
     }
 
@@ -136,6 +152,12 @@ public class ProductController {
 
     @GetMapping("/user/carrito")
     public String goToCarrito(Model model) {
+        model.addAttribute("listaArticulos", articleList);
+        double total = 0;
+        for (Article art : articleList) {
+            total += art.getPrice();
+        }
+        model.addAttribute("total", total);
         return "user/carrito";
     }
 
@@ -151,13 +173,42 @@ public class ProductController {
         art.setQuantity(1);
         articleList.add(art);
         model.addAttribute("article", art);
-        model.addAttribute("articleList", articleList);
-        return "user/add-cart";
+        model.addAttribute("listaArticulos", articleList);
+        return "/user/add-cart";
     }
 
-    @PostMapping("/add-cart")
-    public String addToCart(@ModelAttribute("article") Article article, Model model) {
-
-        return "/user/carrito";
+    @GetMapping("/check")
+    public String goToCheckOut(Model model) {
+        return "/user/check";
     }
+
+    @PostMapping("/check")
+    public String createOrden(Orden orden, Model model, Authentication auth) {
+        double total = 0;
+        OrderStatus os = new OrderStatus();
+        os.setId(1);
+        Usuario us = usuarioService.getUsuarioByUsername(auth.getName());
+        List<Product> prodList = new ArrayList<>();
+        Product prod = new Product();
+        for (Article art : articleList) {
+            total += art.getPrice();
+            prod.setDescription(art.getDescription());
+            prod.setId(art.getId());
+            prodList.add(prod);
+        }
+        orden.setOrderCode(cg.generateCode());
+        orden.setTotal(total);
+        orden.setOrderStatus(os);
+        orden.setUser(us);
+        orden.setOrderDate(dh.date() + " " + dh.hour());
+        orden.setEnable(true);
+        ordenService.addOrden(orden);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", us);
+        articleList.clear();
+        return "/user/check";
+    }
+
+    
+    
 }

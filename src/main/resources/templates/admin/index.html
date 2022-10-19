@@ -76,7 +76,7 @@
                                     [[${usuLog.firstName} + ' ' + ${usuLog.lastName}]]
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Mi perfil</a>
+                                    <a class="dropdown-item" href="/menu">Menu</a>
                                     <div class="dropdown-divider"></div>
                                     <form th:action="@{/logout}" method="post">
                                         <input class="dropdown-item btn-logout" type="submit" value="Cerrar Sesión" />
@@ -116,8 +116,8 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 d-flex stat my-3">
                                         <div class="mx-auto">
-                                            <h6 class="text-muted">Ingresos mensuales</h6>
-                                            <h3 class="font-weight-bold">$50000</h3>
+                                            <h6 class="text-muted">Ingresos</h6>
+                                            <h3 th:text="${ingresos}" class="font-weight-bold">$50000</h3>
 
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
                                     <div class="col-lg-3 col-md-6 d-flex stat my-3">
                                         <div class="mx-auto">
                                             <h6 class="text-muted">Órdenes</h6>
-                                            <h3 class="font-weight-bold">2500</h3>
+                                            <h3 th:text="${orderList.size}" class="font-weight-bold">2500</h3>
 
                                         </div>
                                     </div>
